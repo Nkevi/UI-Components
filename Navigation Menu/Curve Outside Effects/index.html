@@ -9,7 +9,7 @@
   <body>
     <div class="navigation">
       <ul>
-        <li class="list active">
+        <li class="active">
           <a href="#" title="Home">
             <span class="icon">
               <ion-icon name="home-outline"></ion-icon>
@@ -17,7 +17,7 @@
             <span class="text">Home</span>
           </a>
         </li>
-        <li class="list">
+        <li>
           <a href="#" title="Profile">
             <span class="icon">
               <ion-icon name="person-outline"></ion-icon>
@@ -25,7 +25,7 @@
             <span class="text">Profile</span>
           </a>
         </li>
-        <li class="list">
+        <li>
           <a href="#" title="Message">
             <span class="icon">
               <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
@@ -33,7 +33,7 @@
             <span class="text">Message</span>
           </a>
         </li>
-        <li class="list">
+        <li>
           <a href="#" title="Photos">
             <span class="icon">
               <ion-icon name="camera-outline"></ion-icon>
@@ -41,7 +41,7 @@
             <span class="text">Photos</span>
           </a>
         </li>
-        <li class="list">
+        <li>
           <a href="#" title="Settings">
             <span class="icon">
               <ion-icon name="settings-outline"></ion-icon>
@@ -52,14 +52,23 @@
         <div class="indicator"></div>
       </ul>
     </div>
+
     <script>
-      const list = document.querySelectorAll(".list");
-      function activeLink() {
+      const list = document.querySelectorAll(".navigation ul li");
+      const indicator = document.querySelector(".indicator");
+
+      function activeLink(i) {
         list.forEach((item) => item.classList.remove("active"));
-        this.classList.add("active");
+        list[i].classList.add("active");
+        const offset = 70 * i;
+        indicator.style.transform = `translateX(${offset}px)`;
       }
-      list.forEach((item) => item.addEventListener("click", activeLink));
+
+      list.forEach((item, index) =>
+        item.addEventListener("click", () => activeLink(index))
+      );
     </script>
+
     <script
       type="module"
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
